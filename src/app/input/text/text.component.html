@@ -1,0 +1,16 @@
+<mat-form-field appearance="fill">
+  <mat-label>New item</mat-label>
+
+  <ng-template [ngIf]="useAutofocus" [ngIfElse]="nonAutofocus">
+    <input matInput type="text" [(ngModel)]="value" (keydown.enter)="onAddValue()" autofocus>
+  </ng-template>
+  <ng-template #nonAutofocus>
+    <input matInput type="text" [(ngModel)]="value">
+  </ng-template>
+
+  <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearValue()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<button mat-flat-button color="primary" class="add-button" (click)="onAddValue()">Add</button>

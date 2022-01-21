@@ -1,0 +1,8 @@
+<mat-list role="list">
+    <div mat-header>Tasks</div>
+    <ng-template ngFor let-row [ngForOf]="rows">
+        <tc-list-row [row]="row"></tc-list-row>
+    </ng-template>
+</mat-list>
+
+<tc-text (emitValue)="addRow($event)" [useAutofocus]="true"></tc-text>

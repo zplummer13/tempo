@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <span>
+    {{ 'APP.TITLE' | translate }}
+  </span>
+  <span>
+    <i class="fas fa-music app-icon"></i>
+  </span>
+</mat-toolbar>
+
+<div class="app-body">
+  <div class="menu-container">
+    <mat-selection-list class="app-menu" #location [multiple]="false">
+      <mat-list-option value="home" routerLink="/home">
+        <mat-icon mat-list-icon>
+          <i class="fas fa-home"></i>
+        </mat-icon>
+      </mat-list-option>
+      <mat-list-option value="detail" routerLink="/detail">
+        <mat-icon mat-list-icon>
+          <i class="fas fa-cog"></i>
+        </mat-icon>
+      </mat-list-option>
+    </mat-selection-list>
+
+    <!-- <p>
+      Option selected: {{location.selectedOptions.selected[0]?.value}}
+    </p> -->
+  </div>
+  
+  <div class="router-container">  
+    <router-outlet></router-outlet>
+  </div>
+</div>
