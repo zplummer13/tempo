@@ -34,6 +34,8 @@ export class DataService {
                 let student = JSON.parse(data.toString());
                 console.log(student);
             });
+
+            this.saveFile();
         });
 
         console.log(this.userDataPath);
@@ -45,6 +47,16 @@ export class DataService {
 
     public getJSON(filename: string): Observable<any> {
         return this.http.get(filename);
+    }
+
+    public saveFile() {
+        this.fs.writeFile(this.path.join(this.userDataPath,"testFile.json"), '{"data": false}', (err) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log("Wrote file successfully!")
+            }
+        })
     }
 
 }
