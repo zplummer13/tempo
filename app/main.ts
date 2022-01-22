@@ -72,14 +72,18 @@ function createWindow(): BrowserWindow {
 
 try {
 
-  // Event handler for asynchronous incoming messages
-  ipcMain.on('asynchronous-message', (event, arg) => {
-    console.log(arg)
+  // // Event handler for asynchronous incoming messages
+  // ipcMain.on('asynchronous-message', (event, arg) => {
+  //   console.log(arg)
 
-    // Event emitter for sending asynchronous messages
-    // event.sender.send('asynchronous-reply', 'async pong')
-    event.sender.send('asynchronous-reply', userDataPath)
-  })
+  //   // Event emitter for sending asynchronous messages
+  //   // event.sender.send('asynchronous-reply', 'async pong')
+  //   event.sender.send('asynchronous-reply', userDataPath)
+  // })
+
+  ipcMain.on('user-data-path', (event) => {
+    event.returnValue = userDataPath;
+  });
 
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.

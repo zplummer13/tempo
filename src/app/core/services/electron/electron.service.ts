@@ -31,14 +31,6 @@ export class ElectronService {
         }
       }
 
-      // Async message handler
-      this.ipcRenderer.on('asynchronous-reply', (event, arg) => {
-         console.log(arg)
-      })
-
-      // Async message sender
-      this.ipcRenderer.send('asynchronous-message', 'async ping')
-
       // Notes :
       // * A NodeJS's dependency imported with 'window.require' MUST BE present in `dependencies` of both `app/package.json`
       // and `package.json (root folder)` in order to make it work here in Electron's Renderer process (src folder)

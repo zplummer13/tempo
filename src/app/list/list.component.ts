@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { DataService } from "../shared/services/data.service";
 import { Row } from "./list-row/list-row.component";
 
 @Component({
@@ -21,10 +22,17 @@ export class ListComponent implements OnInit {
         }
     ];
 
-    constructor(private router: Router) { }
+    constructor(
+        private router: Router,
+        private dataService: DataService,        
+    ) { }
 
     ngOnInit(): void {
         console.log('ListComponent INIT');
+    }
+
+    ngAfterViewInit(): void {
+        this.loadData();
     }
 
     addRow(addedValue: string) {
@@ -36,6 +44,13 @@ export class ListComponent implements OnInit {
 
     deleteRow(index: number) {
         console.log("delete row: " + index);
+    }
+
+    loadData() {
+        this.dataService.loadFile("todo.json")
+            .then((fileJSON) => {
+                console.log(fileJSON);
+            })
     }
 
 }

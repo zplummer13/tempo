@@ -19,8 +19,6 @@ export class AppComponent {
     this.translate.setDefaultLang('en');
     console.log('APP_CONFIG', APP_CONFIG);
 
-    this.dataService.asyncTest();
-
     if (electronService.isElectron) {
       console.log(process.env);
       console.log('Run in electron');

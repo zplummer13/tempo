@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ipcRenderer } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as util from 'util';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,51 +13,51 @@ export class DataService {
     ipcRenderer: typeof ipcRenderer;
     fs: typeof fs;
     path: typeof path;
+    util: typeof util;
+
+    readFile: any;
+    writeFile: any;
 
     private userDataPath: string = "";
 
-    constructor(private http: HttpClient) {
+    public loading = true;
+
+    constructor() {
         this.ipcRenderer = window.require('electron').ipcRenderer;
-        this.fs = window.require('fs');
+        this.fs = window.require('fs').promises;
         this.path = window.require('path');
-        // this.getJSON().subscribe(data => {
-        //     console.log(data);
-        // });
-        // this.userDataPath = electron.app.getPath('userData');
+        this.util = require("util");
 
-        this.ipcRenderer.on('asynchronous-reply', (event, arg) => {
-            console.log("Data service: " + arg);
+        this.readFile = util.promisify(fs.readFile);
+        this.writeFile = util.promisify(fs.writeFile);
 
-            this.userDataPath = arg;
-            
-            fs.readFile(path.join(arg,'todo.json'), (err, data) => {
-                if (err) throw err;
-                let student = JSON.parse(data.toString());
-                console.log(student);
-            });
-
-            this.saveFile();
-        });
-
-        console.log(this.userDataPath);
-    }
-
-    public asyncTest() {
-        this.ipcRenderer.send('asynchronous-message', 'async ping')
-    }
-
-    public getJSON(filename: string): Observable<any> {
-        return this.http.get(filename);
+        if (this.loading) {
+            this.userDataPath = this.ipcRenderer.sendSync('user-data-path')
+            this.loading = false;
+        }
     }
 
     public saveFile() {
-        this.fs.writeFile(this.path.join(this.userDataPath,"testFile.json"), '{"data": false}', (err) => {
+        this.fs.writeFile(this.filepath("testFile.json"), '{"data": false}', (err) => {
             if (err) {
                 console.log(err)
             } else {
                 console.log("Wrote file successfully!")
             }
         })
+    }
+
+    public async loadFile(fileName: string): Promise<any> {
+
+        let fileJSON = JSON.parse(await this.readFile(this.filepath(fileName)));
+
+        console.log(fileJSON);
+
+        return fileJSON;
+    }
+
+    private filepath(fileName: string): string {
+        return this.path.join(this.userDataPath, fileName);
     }
 
 }
