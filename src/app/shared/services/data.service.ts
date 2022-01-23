@@ -37,7 +37,7 @@ export class DataService {
         }
     }
 
-    public saveFile() {
+    public saveTestFile() {
         this.fs.writeFile(this.filepath("testFile.json"), '{"data": false}', (err) => {
             if (err) {
                 console.log(err)
@@ -49,11 +49,22 @@ export class DataService {
 
     public async loadFile(fileName: string): Promise<any> {
 
+        let fileExists = fs.existsSync(this.filepath(fileName));
+
+        if (!fileExists) {
+            return Promise.resolve(JSON.parse("{}"));
+        }
+
         let fileJSON = JSON.parse(await this.readFile(this.filepath(fileName)));
 
         console.log(fileJSON);
 
         return fileJSON;
+    }
+
+    public async saveFile(fileName: string, data: string): Promise<any> {
+        let resp = await this.writeFile(this.filepath(fileName), data);
+        return resp;
     }
 
     private filepath(fileName: string): string {

@@ -1,3 +1,8 @@
-<mat-list-item role="listitem">
-    {{ row.value }}
+<mat-list-item class="container" role="listitem">
+    <div mat-line>
+        {{ item.name }}
+    </div>
+    <button class="hidden-child" mat-icon-button aria-label="Remove item" (click)="onRemove()">
+        <i class="fas fa-times"></i>
+    </button>
 </mat-list-item>

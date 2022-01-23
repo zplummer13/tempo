@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container .hidden-child {
+    display: none;
+}
+
+.container:hover .hidden-child {
+    display: block;
+}

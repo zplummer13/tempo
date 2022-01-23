@@ -1,8 +1,12 @@
-<mat-list role="list">
-    <div mat-header>Tasks</div>
-    <ng-template ngFor let-row [ngForOf]="rows">
-        <tc-list-row [row]="row"></tc-list-row>
-    </ng-template>
-</mat-list>
-
-<tc-text (emitValue)="addRow($event)" [useAutofocus]="true"></tc-text>
+<ng-template [ngIf]="!loading">
+    <mat-list role="list">
+        <div mat-header>
+            {{ todo.name }}
+        </div>
+        <ng-template ngFor let-item [ngForOf]="todo.items" let-i="index">
+            <tc-list-row [item]="item" (emitRemove)="deleteRow(i)"></tc-list-row>
+        </ng-template>
+    </mat-list>
+    
+    <tc-text (emitValue)="addItem($event)" [useAutofocus]="true"></tc-text>
+</ng-template>

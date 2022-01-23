@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Todo } from "../schema/todo";
+import { TodoItem } from "../schema/todo-item";
 import { DataService } from "../shared/services/data.service";
-import { Row } from "./list-row/list-row.component";
 
 @Component({
     selector: 'tc-list',
@@ -10,17 +11,11 @@ import { Row } from "./list-row/list-row.component";
 })
 export class ListComponent implements OnInit {
 
-    public rows: Row[] = [
-        {
-            value: "item 1",
-        },
-        {
-            value: "item 2",
-        },
-        {
-            value: "item 3",
-        }
-    ];
+    @Input()
+    fileName: string;
+
+    public loading: boolean = true;
+    public todo: Todo;
 
     constructor(
         private router: Router,
@@ -35,21 +30,37 @@ export class ListComponent implements OnInit {
         this.loadData();
     }
 
-    addRow(addedValue: string) {
-        let newRow: Row = {
-            value: addedValue,
-        };
-        this.rows.push(newRow);
+    addItem(addedValue: string) {
+        let newItem= new TodoItem().parse({
+            name: addedValue,
+            description: "",
+            completed: false,
+        });
+        this.todo.items.push(newItem);
+
+        this.saveData();
     }
 
     deleteRow(index: number) {
         console.log("delete row: " + index);
+        this.todo.items.splice(index,1);
+        this.saveData();
     }
 
     loadData() {
         this.dataService.loadFile("todo.json")
             .then((fileJSON) => {
                 console.log(fileJSON);
+                this.todo = new Todo().parse(fileJSON);
+                console.log(this.todo);
+                this.loading = false;
+            })
+    }
+
+    saveData() {
+        this.dataService.saveFile("todo.json", JSON.stringify(this.todo))
+            .catch(err => {
+                console.log(err);
             })
     }
 

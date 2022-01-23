@@ -6,7 +6,8 @@ import { ListComponent } from "./list.component";
 import { ListRowComponent } from './list-row/list-row.component';
 import { MatListModule } from '@angular/material/list';
 import { InputModule } from "../input/input.module";
-
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
     declarations: [
         ListComponent,
@@ -18,6 +19,8 @@ import { InputModule } from "../input/input.module";
         InputModule,
         ListRoutingModule,
         MatListModule,
+        MatButtonModule,
+        MatIconModule,
     ],
     exports: [
         ListComponent

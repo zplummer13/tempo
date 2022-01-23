@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TodoItem } from '../../schema/todo-item';
 
 @Component({
   selector: 'tc-list-row',
@@ -8,15 +9,19 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ListRowComponent implements OnInit {
 
   @Input()
-  row: Row;
+  item: TodoItem;
+
+  @Output()
+  emitRemove = new EventEmitter<boolean>()
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.item)
   }
 
-}
+  onRemove() {
+    this.emitRemove.emit(true);
+  }
 
-export interface Row {
-  value?: string;
 }
