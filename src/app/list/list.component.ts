@@ -14,6 +14,9 @@ export class ListComponent implements OnInit {
     @Input()
     fileName: string;
 
+    @Input()
+    enableSelection: boolean;
+
     public loading: boolean = true;
     public todo: Todo;
 

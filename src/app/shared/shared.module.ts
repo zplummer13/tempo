@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { MatListModule } from '@angular/material/list';
+import { MatCommonModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatListModule,
     BrowserAnimationsModule,
+    MatCommonModule,
   ],
   exports: [
     TranslateModule,
@@ -30,6 +32,8 @@ import { MatListModule } from '@angular/material/list';
     FormsModule,
     MatToolbarModule,
     MatListModule,
+    BrowserAnimationsModule,
+    MatCommonModule,
   ]
 })
 export class SharedModule {}
