@@ -1,10 +1,10 @@
 <mat-toolbar color="primary">
-  <span>
+  <!-- <span>
     {{ 'APP.TITLE' | translate }}
   </span>
   <span>
     <i class="fas fa-music app-icon"></i>
-  </span>
+  </span> -->
 </mat-toolbar>
 
 <div class="app-body">
@@ -12,7 +12,22 @@
     <mat-selection-list class="app-menu" #location [multiple]="false">
       <mat-list-option value="home" routerLink="/home">
         <mat-icon mat-list-icon>
-          <i class="fas fa-home"></i>
+          <i class="fas fa-calendar-check"></i>
+        </mat-icon>
+      </mat-list-option>
+      <mat-list-option value="detail" routerLink="/detail">
+        <mat-icon mat-list-icon>
+          <i class="fas fa-chart-pie"></i>
+        </mat-icon>
+      </mat-list-option>
+      <mat-list-option value="detail" routerLink="/detail">
+        <mat-icon mat-list-icon>
+          <i class="fas fa-search"></i>
+        </mat-icon>
+      </mat-list-option>
+      <mat-list-option value="detail" routerLink="/detail">
+        <mat-icon mat-list-icon>
+          <i class="fas fa-cubes"></i>
         </mat-icon>
       </mat-list-option>
       <mat-list-option value="detail" routerLink="/detail">

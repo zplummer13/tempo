@@ -18,11 +18,12 @@ function createWindow() {
         y: 0,
         width: size.width,
         height: size.height,
+        titleBarStyle: 'hidden',
+        transparent: true,
         webPreferences: {
             nodeIntegration: true,
             allowRunningInsecureContent: (serve) ? true : false,
             contextIsolation: false, // false if you want to run e2e test with Spectron
-            // additionalArguments: [userData]
         },
     });
     userDataPath = path.join(electron_1.app.getPath("userData"), "data");
