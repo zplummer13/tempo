@@ -15,6 +15,11 @@ import { HomeModule } from './home/home.module';
 import { DetailModule } from './detail/detail.module';
 
 import { AppComponent } from './app.component';
+import { JournalComponent } from './features/journal/journal.component';
+import { DocsComponent } from './features/docs/docs.component';
+import { ProgressComponent } from './features/progress/progress.component';
+import { SearchComponent } from './features/search/search.component';
+import { SettingsComponent } from './features/settings/settings.component';
 
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +27,11 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
 @NgModule({
   declarations: [
     AppComponent,
+    JournalComponent,
+    DocsComponent,
+    ProgressComponent,
+    SearchComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

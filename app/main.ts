@@ -10,9 +10,6 @@ const args = process.argv.slice(1),
 
 function createWindow(): BrowserWindow {
 
-  console.log("Test createWindow 3")
-  console.log(app.getPath("userData"))
-
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 

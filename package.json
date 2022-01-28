@@ -43,7 +43,8 @@
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "lint": "ng lint",
     "demo": "echo \"Hello $npm_config_first $npm_config_last\"",
-    "new-component": "cd $INIT_CWD && ng generate component $npm_config_name --selector=tc-$npm_config_name"
+    "test-command": "echo $INIT_CWD && echo $npm_config_name",
+    "new-component": "cd $INIT_CWD && ng generate component $npm_config_name --prefix='tc'"
   },
   "dependencies": {
     "@angular/animations": "13.0.1",

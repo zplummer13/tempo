@@ -4,12 +4,13 @@
 
 .app-body {
     display: flex;
+    height: 100%;
 }
 
 .menu-container {
     width: auto;
-    height: auto;
-    // background-color: lightgrey;
+    height: 100%;
+    background-color: lightgrey;
 }
 
 .app-menu {

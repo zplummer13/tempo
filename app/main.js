@@ -19,7 +19,6 @@ function createWindow() {
         width: size.width,
         height: size.height,
         titleBarStyle: 'hidden',
-        transparent: true,
         webPreferences: {
             nodeIntegration: true,
             allowRunningInsecureContent: (serve) ? true : false,
