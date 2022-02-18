@@ -1,112 +1,54 @@
 {
   "name": "tempo",
-  "version": "10.4.1",
-  "description": "A productivity app [Angular 13 with Electron 16 (Typescript + SASS + Hot Reload)]",
-  "homepage": "https://github.com/zplummer13/tempo",
-  "author": {
-    "name": "Zachary Plummer",
-    "email": "zplummer13@gmail.com"
-  },
-  "keywords": [
-    "angular",
-    "angular 13",
-    "electron",
-    "electron 16",
-    "nodejs",
-    "typescript",
-    "playwright",
-    "eslint",
-    "sass",
-    "windows",
-    "mac",
-    "linux"
-  ],
-  "main": "app/main.js",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "postinstall": "electron-builder install-app-deps",
-    "ng": "ng",
-    "start": "npm-run-all -p electron:serve ng:serve",
-    "build": "npm run electron:serve-tsc && ng build --base-href ./",
-    "build:dev": "npm run build -- -c dev",
-    "build:prod": "npm run build -- -c production",
-    "ng:serve": "ng serve -c",
-    "electron": "electron",
-    "electron:serve-tsc": "tsc -p tsconfig.serve.json",
-    "electron:serve": "wait-on tcp:4200 && npm run electron:serve-tsc && electron . --serve",
-    "electron:local": "npm run build:prod && electron .",
-    "electron:build": "npm run build:prod && electron-builder build --publish=never",
-    "test": "ng test --watch=false",
-    "test:watch": "ng test",
-    "e2e": "npm run build:prod && playwright test -c e2e/playwright.config.ts e2e/",
-    "e2e:show-trace": "playwright show-trace e2e/tracing/trace.zip",
-    "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
-    "lint": "ng lint",
-    "demo": "echo \"Hello $npm_config_first $npm_config_last\"",
-    "test-command": "echo $INIT_CWD && echo $npm_config_name",
-    "new-component": "cd $INIT_CWD && ng generate component $npm_config_name --prefix='tc'"
-  },
   "dependencies": {
-    "@angular/animations": "13.0.1",
-    "@angular/cdk": "^13.1.2",
-    "@angular/common": "13.0.1",
-    "@angular/compiler": "13.0.1",
-    "@angular/core": "13.0.1",
-    "@angular/forms": "13.0.1",
-    "@angular/language-service": "13.0.1",
-    "@angular/material": "^13.1.2",
-    "@angular/platform-browser": "13.0.1",
-    "@angular/platform-browser-dynamic": "13.0.1",
-    "@angular/router": "13.0.1",
-    "rxjs": "7.4.0",
-    "tslib": "^2.1.0",
-    "zone.js": "~0.11.4"
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/electron-devtools-installer": "^2.2.1",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.25",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "typescript": "^4.5.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "13.0.0",
-    "@angular-devkit/build-angular": "13.0.2",
-    "@angular-eslint/builder": "13.0.0-alpha.0",
-    "@angular-eslint/eslint-plugin": "13.0.0-alpha.0",
-    "@angular-eslint/eslint-plugin-template": "13.0.0-alpha.0",
-    "@angular-eslint/schematics": "13.0.0-alpha.0",
-    "@angular-eslint/template-parser": "13.0.0-alpha.0",
-    "@angular/cli": "13.0.2",
-    "@angular/compiler-cli": "13.0.1",
-    "@ngx-translate/core": "14.0.0",
-    "@ngx-translate/http-loader": "7.0.0",
-    "@playwright/test": "1.16.3",
-    "@types/jasmine": "3.10.2",
-    "@types/jasminewd2": "2.0.10",
-    "@types/node": "16.11.7",
-    "@typescript-eslint/eslint-plugin": "5.4.0",
-    "@typescript-eslint/parser": "5.4.0",
-    "conventional-changelog-cli": "2.1.1",
-    "electron": "16.0.0",
-    "electron-builder": "22.13.1",
-    "electron-reload": "1.5.0",
-    "eslint": "8.2.0",
-    "eslint-plugin-import": "2.25.3",
-    "eslint-plugin-jsdoc": "37.0.3",
-    "eslint-plugin-prefer-arrow": "1.2.3",
-    "jasmine-core": "3.10.1",
-    "jasmine-spec-reporter": "7.0.0",
-    "karma": "6.3.9",
-    "karma-coverage-istanbul-reporter": "3.0.3",
-    "karma-electron": "7.1.0",
-    "karma-jasmine": "4.0.1",
-    "karma-jasmine-html-reporter": "1.7.0",
-    "node-polyfill-webpack-plugin": "1.1.4",
-    "npm-run-all": "4.1.5",
-    "playwright": "1.16.3",
-    "ts-node": "10.4.0",
-    "typescript": "~4.4.4",
-    "wait-on": "6.0.0",
-    "webdriver-manager": "12.1.8"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "browserslist": [
-    "chrome 91"
-  ]
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^17.0.1",
+    "electron-builder": "^22.14.13",
+    "wait-on": "^6.0.1"
+  }
 }
