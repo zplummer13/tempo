@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { FaChartPie, FaCalendarCheck } from 'react-icons/fa';
-import { GiGClef } from 'react-icons/gi';
+import { FaChartPie, FaCalendarCheck, FaCog } from 'react-icons/fa';
 
 const SideBar = () => {
     const [current, setCurrent] = useState("todo");
@@ -36,8 +35,8 @@ const SideBar = () => {
             <div onClick={() => setCurrent("settings")}>
                 <SideBarIcon
                     icon={
-                        <GiGClef
-                            size="34"
+                        <FaCog
+                            size="28"
                             color={current === "settings" ? "white" : "black"}
                         />}
                     text="#settings"
