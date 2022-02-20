@@ -5,7 +5,7 @@ const SideBar = () => {
     const [current, setCurrent] = useState("todo");
 
     return (
-        <div className="fixed top-0 left-0 h-screen w-16 pt-4 bg-slate-500 flex flex-col shadow-lg">
+        <div className="fixed top-0 left-0 h-screen w-16 pt-1 bg-slate-500 flex flex-col shadow-lg">
             <div onClick={() => setCurrent("todo")}>
                 <SideBarIcon
                     icon={
