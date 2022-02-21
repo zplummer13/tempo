@@ -17,6 +17,7 @@ function createWindow() {
         // titleBarStyle: "hidden",
         webPreferences: {
             nodeIntegration: true,
+            contextIsolation: true,
             preload: __dirname + '/preload.ts',
         }
     })
