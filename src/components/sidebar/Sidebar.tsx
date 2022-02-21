@@ -14,7 +14,6 @@ const SideBar = () => {
                             color={current === "todo" ? "white" : "black"}
                         />}
                     text="#todo"
-                    onClick={() => setCurrent("todo")}
                 />
             </div>
             <div onClick={() => setCurrent("progress")}>
@@ -46,7 +45,12 @@ const SideBar = () => {
     );
 };
 
-const SideBarIcon = ({ icon, text = 'tooltip ♫' }) => {
+type SideBarIconProps = {
+    icon: any;
+    text: string;
+}
+
+const SideBarIcon = ({ icon, text = 'tooltip ♫' }: SideBarIconProps) => {
     return (
         <div className="relative flex items-center justify-center 
         h-12 w-12 mt-2 mb-2 mx-auto group">
