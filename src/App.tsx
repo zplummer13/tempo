@@ -6,8 +6,8 @@ import Store from 'electron-store';
 function App() {
 
     useEffect(() => {
-        const store = new Store();
-        // store.set('foo', 'bar')
+        const store = new Store({ name: "journal/test" });
+        store.set('foo', 'bar')
         console.log(store.get('foo'))
     }, [])
 
