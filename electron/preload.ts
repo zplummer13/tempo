@@ -12,12 +12,4 @@ contextBridge.exposeInMainWorld('electron', {
     },
     // Any other methods you want to expose in the window object.
     // ...
-    // files: {
-    //     read(fileName) {
-    //         return ipcRenderer.sendSync('electron-files-read', fileName);
-    //     },
-    //     write(fileName, data) {
-    //         ipcRenderer.send("election-files-write", fileName, data);
-    //     }
-    // }
 });

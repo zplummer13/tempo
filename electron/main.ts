@@ -1,15 +1,10 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import * as isDev from 'electron-is-dev';
-import * as fs from 'fs';
-import * as util from 'util';
 import * as  Store from "electron-store";
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 
 let win: BrowserWindow | null = null;
-let userDataPath: string = "";
-// let readFile: any;
-// let writeFile: any;
 
 const store = new Store();
 
@@ -35,13 +30,6 @@ function createWindow() {
     }
 
     win.on('closed', () => win = null);
-
-    userDataPath = path.join(app.getPath("userData"), "data");
-
-    // Make the data folder
-    if (!fs.existsSync(userDataPath)) {
-        fs.mkdirSync(userDataPath);
-    }
 
     // Hot Reloading
     if (isDev) {
@@ -77,28 +65,9 @@ app.on('activate', () => {
     }
 });
 
-ipcMain.on('user-data-path', (event) => {
-    event.returnValue = userDataPath;
-});
-
 ipcMain.on('electron-store-get', async (event, val) => {
     event.returnValue = store.get(val);
 });
 ipcMain.on('electron-store-set', async (event, key, val) => {
     store.set(key, val);
 });
-
-// ipcMain.on('read-file', async (event, [fileName]) => {
-//     let fileExists = fs.existsSync(filepath(fileName));
-
-//     if (!fileExists) {
-//         event.returnValue = null;
-//     } else {
-//         let fileJSON = JSON.parse(await readFile(filepath(fileName)));
-//         event.returnValue = fileJSON;
-//     }
-// });
-
-function filepath(fileName: string) {
-    return path.join(userDataPath, fileName);
-}
